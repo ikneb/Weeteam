@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
             data: $('#form').serialize(),
             success: function (data) {
                 $('.filter__view').css('display','block');
-                $('.filter__view').append(data);
+                $('.filter__view').html(data);
             }
         });
     });

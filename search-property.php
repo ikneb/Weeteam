@@ -35,48 +35,60 @@ function get_property()
         $limit = $count_posts % $limit;
     }
 
-    $meta = array();
+    $meta = '';
 
 
-    if (isset($_POST['name'])) {
+    if (!empty($_POST['name'])) {
         $name = htmlspecialchars($_POST['name']);
-        $meta = ['name' => $name];
+        $meta .= "meta_value='$name' ";
     }
-    if (isset($_POST['coordinates'])) {
+    if (!empty($_POST['coordinates'])) {
         $coordinates = htmlspecialchars($_POST['coordinates']);
-        $meta = ['coordinates' => $coordinates];
+        $meta .= "meta_value='$coordinates' ";
     }
-    if (isset($_POST['number_floors'])) {
+    if (!empty($_POST['number_floors'])) {
         $number_floors = htmlspecialchars($_POST['number_floors']);
-        $meta = ['number_floors' => $number_floors];
+        $meta .= "meta_value='$number_floors' ";
     }
-    if (isset($_POST['type'])) {
+    if (!empty($_POST['type'])) {
         $type = htmlspecialchars($_POST['type']);
-        $meta = ['type' => $type];
+        $meta .= "meta_value='$type' ";
     }
-    if (isset($_POST['area'])) {
+    if (!empty($_POST['area'])) {
         $area = htmlspecialchars($_POST['area']);
-        $meta = ['area' => $area];
+        $meta .= "meta_value='$area' ";
     }
-    if (isset($_POST['number_rooms'])) {
+    if (!empty($_POST['number_rooms'])) {
         $number_rooms = htmlspecialchars($_POST['number_rooms']);
-        $meta = ['number_rooms' => $number_rooms];
+        $meta .= "meta_value='$number_rooms' ";
     }
-    if (isset($_POST['balcony'])) {
+    if (!empty($_POST['balcony'])) {
         $balcony = htmlspecialchars($_POST['balcony']);
-        $meta = ['balcony' => $balcony];
+        $meta .= "meta_value='$balcony' ";
     }
-    if (isset($_POST['bathroom'])) {
+    if (!empty($_POST['bathroom'])) {
         $bathroom = htmlspecialchars($_POST['bathroom']);
-        $meta = ['bathroom' => $bathroom];
+        $meta .= "meta_value='$bathroom' ";
     }
-    
+
+    $meta = str_replace(" ", " OR ", $meta);
+    $meta = substr($meta, 0, -3);
+
+    global $wpdb;
+    $sql = "SELECT post_id FROM $wpdb->postmeta WHERE $meta";
+    $query_id = $meta_pages = $wpdb->get_results($sql, 'OBJECT');
+    $array_id = array();
+    foreach ($query_id as $id) {
+        $items =$id->post_id;
+
+        array_push($array_id,$items );
+    }
+    print_r($array_id);
     $query = new WP_Query(array(
-        'post_type' => 'property',
-        'meta_query' => array($meta),
-        'posts_per_page' => $limit,
-        'offset' => $offset,
+            'post_type' => 'property',
+            'post__in' => $array_id
     ));
+
     if ($query->have_posts()) : ?>
 
         <?php while ($query->have_posts()) :

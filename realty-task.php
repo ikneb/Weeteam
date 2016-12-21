@@ -186,6 +186,7 @@ function filter_property_result()
             <div class="filter__number-floors">
                 <label for="number_floors">Numbers floors</label>
                 <select name="number_floors" id="number_floors">
+                    <option selected="selected">Select</option>
                     <?php for ($i = 1; $i < 21; $i++): ?>
                         <option value="<?= $i ?>"><?= $i ?></option>
                     <?php endfor; ?>
@@ -193,9 +194,9 @@ function filter_property_result()
             </div>
             <div class="filter__type">
                 <label for="">Type building:</label><br>
-                <input type="radio" name="type" value="panel">Panel<br>
-                <input type="radio" name="type" value="brick">Brick<br>
-                <input type="radio" name="type" value="block">Block<br>
+                <input type="radio" name="type" value="radiobutton_num_1">Panel<br>
+                <input type="radio" name="type" value="radiobutton_num_2">Brick<br>
+                <input type="radio" name="type" value="radiobutton_num_3">Block<br>
             </div>
             <h3>Properties float</h3>
             <div class="filter__area">
@@ -204,7 +205,9 @@ function filter_property_result()
             </div>
             <div class="filter__number-rooms">
                 <label for="number_rooms">Numbers floors</label>
+
                 <select name="number_rooms" id="number_rooms">
+                    <option selected="selected">Select</option>
                     <?php for ($i = 1; $i < 11; $i++): ?>
                         <option value="<?= $i ?>"><?= $i ?></option>
                     <?php endfor; ?>
@@ -213,14 +216,14 @@ function filter_property_result()
 
             <div class="filter__balcony">
                 <label for="">Type building:</label><br>
-                <input type="radio" name="balcony" value="Yes">Yes<br>
-                <input type="radio" name="balcony" value="No">No<br>
+                <input type="radio" name="balcony" value="radiobutton_num_1">Yes<br>
+                <input type="radio" name="balcony" value="radiobutton_num_2">No<br>
             </div>
 
             <div class="filter__bathroom">
                 <label for="">Type building:</label><br>
-                <input type="radio" name="bathroom" value="Yes">Yes<br>
-                <input type="radio" name="bathroom" value="No">No<br>
+                <input type="radio" name="bathroom" value="radiobutton_num_1">Yes<br>
+                <input type="radio" name="bathroom" value="Nradiobutton_num_2">No<br>
             </div>
 
             <div class="filter__button">
