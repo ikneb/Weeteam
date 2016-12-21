@@ -1,0 +1,40 @@
+
+.property__block{
+    max-width: 500px;
+    float: left;
+    margin-left: 30px;
+}
+
+.property__block h2{
+    width: 50%;
+}
+.property__floors{
+    float: right;
+    margin-left: 40px;
+}
+
+.propperty__singl-block{
+    float: left;
+}
+.property__coordinate{
+    margin-left: 30px;
+}
+
+.filter__block{
+    width: 300px;
+}
+
+.filter__block  .filter__name,.filter__coordinate,.filter__number-floors,.filter__type,.filter__button,.filter__button,.filter__bathroom,.filter__balcony,.filter__number-rooms,.filter__area{
+    margin-bottom: 20px;
+}
+
+.filter__view{
+display: none;
+}
+
+.search__block img{
+    max-width: 100px;
+}
+.search__block h3,.search__floors{
+    float: right;
+}

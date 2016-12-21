@@ -4,53 +4,38 @@ get_header(); ?>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
+        <div class="container">
+            <?php $slider = new WP_Query(array('post_type' => 'property', 'order' => 'ASC')) ?>
 
-        <?php $slider = new WP_Query(array('post_type' => 'property', 'order' => 'ASC')) ?>
+            <?php if ($slider->have_posts()) : ?>
 
-        <?php  if ($slider->have_posts()) : ?>
+                <?php while ($slider->have_posts()) :
+                    $slider->the_post(); ?>
+                    <div class="property__block">
+                        <?php
+                        $image_property = simple_fields_value("image_property");
+                        $name = simple_fields_value("name");
+                        $number_floors = simple_fields_value("number_floors");
+                        $type = simple_fields_value("type");
+                        $coordinates = simple_fields_value("coordinates");
+                        ?>
+                        <img src="<?php echo $image_property['url']; ?>">
+                        <h2><a href="<?php echo get_permalink(); ?>"><?php echo $name; ?></a></h2>
+                        <p>
+                            <span class="property__type">Type: <?php echo $type['selected_radiobutton']['value'];?></span>
+                            <span class="property__floors">Floors :<?php  echo $number_floors['selected_option']['value']; ?></span>
+                        </p>
+                    </div>
+                <?php endwhile; ?>
 
-            <?php while ($slider->have_posts()) : $slider->the_post(); ?>
-                <?php
-                    echo $name = simple_fields_value("name");
-                    echo '<br>';
-                    echo $coordinates = simple_fields_value("coordinates");
-                    echo '<br>';
+            <?php else: ?>
+                <div><h1>Not found</h1></div>
+            <?php endif;
+            ?>
 
-                $number_floors = simple_fields_value("number_floors");
-                var_dump($number_floors['selected_option']['value']);
-                echo '<br>';
-
-               $type = simple_fields_value("type");
-                var_dump($type['selected_radiobutton']['value']);
-                echo '<br>';
-
-                $image_property = simple_fields_value("image_property");
-                ?>
-                <img src="<?php echo $image_property['url'];?>">
-                <?php
-                echo '<br>';
-
-               /* $rooms = simple_fields_fieldgroup("block");
-               foreach ($rooms as $room){
-                   echo $room['area'];
-                   echo $room['number_rooms']['selected_radiobutton']['value'];
-                   echo $room['balcony']['selected_radiobutton']['value'];
-                   echo $room['bathroom']['selected_radiobutton']['value'];
-                   var_dump($room['image_room']);
-
-               }*/
-                echo '<br>';
-
-                ?>
-            <?php endwhile; ?>
-
-
-        <?php else: ?>
-            <div><h1>Not found</h1></div>
-        <?php endif; ?>
-
-
+        </div>
     </main><!-- .site-main -->
 </div><!-- .content-area -->
 
 <?php get_footer(); ?>
+
