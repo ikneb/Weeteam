@@ -2,7 +2,7 @@
 /*
 Plugin Name: Realty Task Plugin
 Plugin URI: http://test.ua
-Description: Task plugin.
+Description: Task plugin.You need create page 'property' for correct work plugin
 Version: 1.0
 Author: Eduard
 */
@@ -91,8 +91,8 @@ function property_page_template($page_template)
  */
 function load_my_script()
 {
-    wp_enqueue_style('style_my_plugin', plugins_url('/access/css/style.css', __FILE__));
-    wp_enqueue_script('js_my_plugin', plugins_url('/access/js/main.js', __FILE__), array('jquery'));
+    wp_enqueue_style('style_my_plugin', plugins_url('/assets/css/style.css', __FILE__));
+    wp_enqueue_script('js_my_plugin', plugins_url('/assets/js/main.js', __FILE__), array('jquery'));
 }
 
 
